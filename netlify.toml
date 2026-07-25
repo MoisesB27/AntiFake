@@ -1,0 +1,10 @@
+[build]
+  # Configura la carpeta base donde se encuentra Next.js
+  base = "apps/frontend"
+  # Comando que Netlify ejecutará para construir tu Next.js
+  command = "npm run build"
+  # Directorio que Netlify va a publicar
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

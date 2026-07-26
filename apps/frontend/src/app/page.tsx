@@ -49,14 +49,17 @@ export default function AntiFakeScanner() {
       const formData = new FormData();
       formData.append('file', file);
       
-      const response = await axios.post('/api/scanner/upload', formData, {
+      // 👇 REEMPLAZA ESTA URL CON LA URL QUE TE DÉ NETLIFY PARA TU BACKEND 👇
+      const backendUrl = 'https://tu-backend.netlify.app'; 
+      
+      const response = await axios.post(`${backendUrl}/scanner/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       
       setResults(response.data.report);
     } catch (error) {
       console.error("Error scanning file", error);
-      alert("Hubo un error al analizar el archivo. Inténtalo de nuevo más tarde.");
+      alert("Hubo un error al analizar el archivo. Asegúrate de que el backend esté ejecutándose correctamente.");
     } finally {
       setIsLoading(false);
     }

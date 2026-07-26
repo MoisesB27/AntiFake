@@ -49,14 +49,14 @@ export default function AntiFakeScanner() {
       const formData = new FormData();
       formData.append('file', file);
       
-      const response = await axios.post('http://localhost:3000/scanner/upload', formData, {
+      const response = await axios.post('/api/scanner/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       
       setResults(response.data.report);
     } catch (error) {
       console.error("Error scanning file", error);
-      alert("Hubo un error al analizar el archivo. Asegúrate de que el backend esté ejecutándose en el puerto 3000.");
+      alert("Hubo un error al analizar el archivo. Inténtalo de nuevo más tarde.");
     } finally {
       setIsLoading(false);
     }

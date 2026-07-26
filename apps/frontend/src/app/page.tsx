@@ -50,9 +50,9 @@ export default function AntiFakeScanner() {
       formData.append('file', file);
       
       // 👇 REEMPLAZA ESTA URL CON LA URL QUE TE DÉ NETLIFY PARA TU BACKEND 👇
-      const backendUrl = 'https://tu-backend.netlify.app'; 
+      const backendUrl = 'https://tu-backend-antifake.netlify.app'; 
       
-      const response = await axios.post(`${backendUrl}/scanner/upload`, formData, {
+      const response = await axios.post(`${backendUrl}/.netlify/functions/api/scanner/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       

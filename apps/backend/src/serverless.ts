@@ -3,9 +3,9 @@ import { AppModule } from './app.module';
 import serverlessExpress from 'serverless-http';
 import { Handler, Context, Callback } from 'aws-lambda';
 
-let server: Handler;
+let server: any;
 
-async function bootstrap(): Promise<Handler> {
+async function bootstrap(): Promise<any> {
   const app = await NestFactory.create(AppModule);
   // Enable CORS so the frontend can hit it
   app.enableCors();
@@ -20,11 +20,10 @@ async function bootstrap(): Promise<Handler> {
   return serverlessExpress(expressApp);
 }
 
-export const handler: Handler = async (
+export const handler = async (
   event: any,
-  context: Context,
-  callback: Callback,
+  context: Context
 ) => {
   server = server ?? (await bootstrap());
-  return server(event, context, callback);
+  return server(event, context);
 };
